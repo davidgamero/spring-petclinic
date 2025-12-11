@@ -24,18 +24,13 @@ build/
 *.swo
 
 # Documentation
-README.md
 *.md
+!README.md
 docs/
 
 # CI/CD
 .github/
 .gitpod.yml
-
-# Docker
-Dockerfile
-.dockerignore
-docker-compose.yml
 
 # Other
 .DS_Store
