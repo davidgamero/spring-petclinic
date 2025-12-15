@@ -1,6 +1,9 @@
 # Dockerfile for Spring PetClinic
 # Uses pre-built JAR approach for faster builds and to avoid network restrictions
-# Build JAR first: ./mvnw package -DskipTests
+#
+# Build steps:
+# 1. Build the JAR: ./mvnw clean package -DskipTests
+# 2. Build image: docker build -t spring-petclinic:latest .
 #
 # Compliant with organizational policy: Uses Microsoft Container Registry (MCR) base images
 
@@ -11,7 +14,8 @@ WORKDIR /app
 # Create non-root user for security
 RUN groupadd -r spring && useradd -r -g spring spring
 
-# Copy the pre-built JAR (build with: ./mvnw package -DskipTests)
+# Copy the pre-built JAR
+# Note: Use 'mvn clean package' to ensure only one JAR exists in target/
 COPY target/spring-petclinic-*.jar app.jar
 
 # Change ownership to non-root user
@@ -27,7 +31,9 @@ EXPOSE 8080
 ENV SPRING_PROFILES_ACTIVE=default
 ENV JAVA_OPTS=""
 
-# Health check using Spring Boot Actuator (using wget as curl is not available in mariner)
+# Health check using Spring Boot Actuator
+# Note: /actuator/health is configured by default to expose only status.
+# For production, verify actuator security configuration in application.properties
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health || exit 1
 
