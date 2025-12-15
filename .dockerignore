@@ -1,0 +1,66 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE files
+.idea
+*.iws
+*.iml
+*.ipr
+.vscode
+.settings
+.classpath
+.project
+
+# Build files (but keep target for JAR)
+build/
+.gradle
+out/
+
+# Documentation
+README.md
+LICENSE.txt
+HELP.md
+
+# CI/CD
+.github
+.gitpod.yml
+
+# Development
+.devcontainer
+.editorconfig
+
+# Kubernetes manifests (not needed for Docker build)
+k8s/
+
+# Docker compose (not needed for Docker build)
+docker-compose.yml
+
+# Maven/Gradle wrappers (not needed for runtime image)
+mvnw
+mvnw.cmd
+.mvn
+gradlew
+gradlew.bat
+gradle/
+
+# Source files (not needed for runtime image)
+pom.xml
+build.gradle
+settings.gradle
+src/
+
+# Target directory items (keep only JAR)
+target/*.original
+target/classes/
+target/generated-sources/
+target/generated-test-sources/
+target/maven-archiver/
+target/maven-status/
+target/test-classes/
+target/surefire-reports/
+target/*.bom.json
+
+# Policy files
+.containerization-assist-policy
