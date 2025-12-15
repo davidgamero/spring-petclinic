@@ -34,7 +34,7 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Docker
+# Docker (Dockerfiles are read separately by Docker, not from build context)
 Dockerfile
 Dockerfile.simple
 .dockerignore
