@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# IDE
+.idea
+.vscode
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings
+.metadata
+
+# Build artifacts (excluding JAR for Dockerfile.simple)
+target/*
+!target/*.jar
+build/
+bin/
+out/
+*.class
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+Dockerfile.simple
+.dockerignore
+docker-compose.yml
+
+# Documentation
+*.md
+!DOCKER.md
+docs/
+
+# Test and development
+.devcontainer
+.gitpod.yml
