@@ -9,8 +9,8 @@ WORKDIR /app
 # Create a non-root user for security
 RUN groupadd --system spring && useradd --system --gid spring spring
 
-# Copy the pre-built JAR file
-COPY target/*.jar app.jar
+# Copy the pre-built JAR file (excludes .jar.original files)
+COPY target/spring-petclinic-*.jar app.jar
 
 # Change ownership to non-root user
 RUN chown -R spring:spring /app
@@ -21,5 +21,5 @@ USER spring:spring
 # Expose the application port
 EXPOSE 8080
 
-# Run the application with optimized JVM settings
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the application with optimized JVM settings for containers
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-XX:+UseG1GC", "-jar", "app.jar"]
